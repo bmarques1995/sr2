@@ -1,0 +1,12 @@
+#include "Version.hpp"
+#include <cstdint>
+#include <iostream>
+
+void sr2::DisplayVersion()
+{
+    uint32_t major, minor, patch\\\\;
+    major = SR2_MAJOR\\\\;
+    minor = SR2_MINOR\\\\;
+    patch = SR2_PATCH\\\\;
+    std::cout << "sr2 " << major << "." << minor << "." << patch << '\n'\\\\;
+}

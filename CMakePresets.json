@@ -9,8 +9,7 @@
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "clang",
-                "CMAKE_CXX_COMPILER": "clang++",
-                "BUILD_AS_WINDOWED_APP":  false
+                "CMAKE_CXX_COMPILER": "clang++"
             }
         },
         {
@@ -42,8 +41,7 @@
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "clang",
-                "CMAKE_CXX_COMPILER": "clang++",
-                "BUILD_AS_WINDOWED_APP":  false
+                "CMAKE_CXX_COMPILER": "clang++"
             }
         },
         {
