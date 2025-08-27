@@ -1,0 +1,7 @@
+.vs/
+out/
+Linux/
+Windows/
+modules/
+dependencies/
+__pycache__/

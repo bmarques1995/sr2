@@ -1,0 +1,72 @@
+﻿{
+    "version": 3,
+    "cmakeMinimumRequired": { "major": 3, "minor": 22 },
+    "configurePresets": [
+        {
+            "name": "linux-base",
+            "hidden": true,
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++",
+                "BUILD_AS_WINDOWED_APP":  false
+            }
+        },
+        {
+            "name": "linux-debug",
+            "displayName": "Linux Debug",
+            "inherits": "linux-base",
+            "installDir": "${sourceDir}/Linux/Debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_PREFIX_PATH": "${sourceDir}/Linux/Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/Linux/Debug"
+            }
+        },
+        {
+            "name": "linux-release",
+            "displayName": "Linux Release",
+            "inherits": "linux-debug",
+            "installDir": "${sourceDir}/Linux/Release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_PREFIX_PATH": "${sourceDir}/Linux/Release",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/Linux/Release"
+            }
+        },
+        {
+            "name": "freebsd-base",
+            "hidden": true,
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++",
+                "BUILD_AS_WINDOWED_APP":  false
+            }
+        },
+        {
+            "name": "freebsd-debug",
+            "displayName": "FreeBSD Debug",
+            "inherits": "freebsd-base",
+            "installDir": "${sourceDir}/FreeBSD/Debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_PREFIX_PATH": "${sourceDir}/FreeBSD/Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/FreeBSD/Debug"
+            }
+        },
+        {
+            "name": "freebsd-release",
+            "displayName": "FreeBSD Release",
+            "inherits": "freebsd-debug",
+            "installDir": "${sourceDir}/FreeBSD/Release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_PREFIX_PATH": "${sourceDir}/FreeBSD/Release",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/FreeBSD/Release"
+            }
+        }
+    ]
+}
