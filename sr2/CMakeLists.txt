@@ -13,14 +13,24 @@ macro(add_version_file OUTPUT_FILE)
 	file(WRITE ${OUTPUT_FILE} ${OUTPUT_SOURCE})
 endmacro()
 
+set(TARGET_LIB_NAME sr2lib)
 set(TARGET_NAME sr2)
 
 add_version_file(${CMAKE_CURRENT_SOURCE_DIR}/src/Version.cpp)
-file(GLOB_RECURSE SAMPLE_HDRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "src/*.hpp")
-file(GLOB_RECURSE SAMPLE_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "src/*.cpp")
+file(GLOB_RECURSE SR2_HDRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "src/*.hpp")
+file(GLOB_RECURSE SR2_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "src/*.cpp")
+file(GLOB_RECURSE SR2_LIB_HDRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "components/*.hpp")
+file(GLOB_RECURSE SR2_LIB_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "components/*.cpp")
 
-add_executable(${TARGET_NAME} ${SAMPLE_HDRS} ${SAMPLE_SRCS})
-target_link_libraries(${TARGET_NAME} PRIVATE sqlite3)
+add_library(${TARGET_LIB_NAME} STATIC ${SR2_LIB_HDRS} ${SR2_LIB_SRCS})
+target_include_directories(${TARGET_LIB_NAME} PUBLIC
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/components>
+)
+target_link_libraries(${TARGET_LIB_NAME} PUBLIC sqlite3)
+set_cxx_project_standards(${TARGET_LIB_NAME} 20 FALSE)
+
+add_executable(${TARGET_NAME} ${SR2_HDRS} ${SR2_SRCS})
+target_link_libraries(${TARGET_NAME} PRIVATE ${TARGET_LIB_NAME})
 target_include_directories(${TARGET_NAME} PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
 )
