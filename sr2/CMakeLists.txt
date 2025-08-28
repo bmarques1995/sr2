@@ -25,8 +25,10 @@ file(GLOB_RECURSE SR2_LIB_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "components/
 add_library(${TARGET_LIB_NAME} STATIC ${SR2_LIB_HDRS} ${SR2_LIB_SRCS})
 target_include_directories(${TARGET_LIB_NAME} PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/components>
+	$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/third_party/cmake/Utilities>
+	$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/third_party/cmake/Utilities>
 )
-target_link_libraries(${TARGET_LIB_NAME} PUBLIC sqlite3)
+target_link_libraries(${TARGET_LIB_NAME} PUBLIC sqlite3 CURL::libcurl)
 set_cxx_project_standards(${TARGET_LIB_NAME} 20 FALSE)
 
 add_executable(${TARGET_NAME} ${SR2_HDRS} ${SR2_SRCS})

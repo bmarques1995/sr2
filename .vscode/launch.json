@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "lldb-dap",
+            "request": "launch",
+            "name": "Linux Debug",
+            "program": "${workspaceFolder}/Linux/Debug/bin/sr2",
+            "args": ["--test1"],
+        }
+    ],
+}

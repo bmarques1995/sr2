@@ -2,4 +2,5 @@
 
 namespace sr2 {
     void CreateSQLiteSampleDB();
+    void RequestSampleContent();
 }
