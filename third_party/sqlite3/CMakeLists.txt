@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.22)
+
+add_library(sqlite3 STATIC sqlite3.c)
+target_include_directories(sqlite3 PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+
+set_cxx_project_standards(sqlite3 17 TRUE)

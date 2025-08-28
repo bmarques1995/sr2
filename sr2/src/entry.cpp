@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "Helper.hpp"
 #include "Version.hpp"
+#include <sqlite3.h>
 
 const std::unordered_map<std::string, uint32_t> standalone_cmd_option = {
     {"--help", 1},
@@ -15,6 +16,17 @@ const std::unordered_map<std::string, uint32_t> standalone_cmd_option = {
 
 int main(int argc, char** argv)
 {
+    sqlite3* db;
+    sqlite3_stmt* stmt;
+    auto db_id = sqlite3_open("sample.sqlite3", &db);
+    if (db_id == SQLITE_OK)
+    {
+        std::cout << "Database opened successfully." << std::endl;
+        sqlite3_prepare_v2(db, "CREATE TABLE IF NOT EXISTS sample_table (id INTEGER PRIMARY KEY, name TEXT, age INTEGER);", -1, &stmt, 0);
+        sqlite3_step(stmt);
+		sqlite3_finalize(stmt);
+		sqlite3_close(db);
+    }
     for (size_t i = 1; i < argc; ++i) {
         std::string arg = argv[i];
         auto it = standalone_cmd_option.find(arg);

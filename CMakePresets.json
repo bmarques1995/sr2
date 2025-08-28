@@ -65,6 +65,35 @@
                 "CMAKE_PREFIX_PATH": "${sourceDir}/FreeBSD/Release",
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/FreeBSD/Release"
             }
+        },
+        {
+            "name": "windows-base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl"
+            }
+        },
+        {
+            "name": "windows-debug",
+            "displayName": "Windows Debug",
+            "inherits": "windows-base",
+            "installDir": "${sourceDir}/Windows/Debug",
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "${sourceDir}/Windows/Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/Windows/Debug"
+            }
+        },
+        {
+            "name": "Windows-release",
+            "displayName": "Windows Release",
+            "inherits": "windows-debug",
+            "installDir": "${sourceDir}/Windows/Release",
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "${sourceDir}/Windows/Release",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/Windows/Release"
+            }
         }
     ]
 }
