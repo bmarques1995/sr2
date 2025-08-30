@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/sr2/components",
+                "${workspaceFolder}/sr2/src",
+                "${workspaceFolder}/third_party/cmake/Utilities",
+                "${workspaceFolder}/third_party/sqlite3",
+                "${workspaceFolder}/out/build/linux-debug/third_party/cmake/Utilities",
+                "${workspaceFolder}/out/build/linux-release/third_party/cmake/Utilities"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang++",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
