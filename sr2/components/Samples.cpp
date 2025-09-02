@@ -3,7 +3,7 @@
 #include <iostream>
 #include <memory>
 #include <unordered_map>
-#include <cm3p/curl/curl.h>
+#include <curl/curl.h>
 #include <vector>
 #include <cstring>
 #include <cstdlib>

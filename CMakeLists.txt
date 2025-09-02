@@ -20,7 +20,6 @@ include(target_destination)
 include(source_downloader)
 
 add_subdirectory("third_party/sqlite3")
-add_subdirectory("third_party/cmake")
 
 # Inclua subprojetos.
 add_subdirectory("sr2")
