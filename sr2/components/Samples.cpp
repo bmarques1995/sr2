@@ -7,6 +7,8 @@
 #include <cstdlib>
 #include "RawBuffer.hpp"
 #include "Downloader.hpp"
+#include "CURLStarter.hpp"
+#include "FileHandler.hpp"
 
 void sr2::CreateSQLiteSampleDB()
 {
@@ -25,8 +27,8 @@ void sr2::CreateSQLiteSampleDB()
 
 void sr2::RequestSampleContent()
 {
-    Downloader::InitCurl();
-    Downloader::SetCertificateLocation("/etc/ssl/certs/ca-certificates.crt");
+    CURLStarter::InitCurl();
+    CURLStarter::SetCertificateLocation("/etc/ssl/certs/ca-certificates.crt");
     Downloader downloader;
     std::shared_ptr<sr2::RawBuffer> m_OutputBuffer;
     m_OutputBuffer.reset(new sr2::RawBuffer());
@@ -34,5 +36,5 @@ void sr2::RequestSampleContent()
     downloader.PackMemoryChunks(&m_OutputBuffer);
     std::string filename = "response." + downloader.ReturnMappedMime();
     FileHandler::WriteBinFile(filename, m_OutputBuffer);
-    Downloader::ShutdownCurl();
+    CURLStarter::ShutdownCurl();
 }

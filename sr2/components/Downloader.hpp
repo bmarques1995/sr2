@@ -13,12 +13,7 @@ namespace sr2
     {
     public:
         Downloader();
-        ~Downloader();
-
-        static void InitCurl();
-        static void ShutdownCurl();
-        static void SetCurlChunkSize(size_t size);
-        static void SetCertificateLocation(std::string location);
+        ~Downloader();        
 
         bool DownloadFile(std::string_view url);
         void PackMemoryChunks(std::shared_ptr<sr2::RawBuffer>* out_buffer);
@@ -31,10 +26,8 @@ namespace sr2
 
         std::vector<std::shared_ptr<sr2::Chunk>> m_Response;
         static const std::unordered_map<std::string, std::string> s_MimeExtensionMap;
-        static std::string s_CertificateLocation;
         std::string m_CurrentMime;
 
-        static size_t s_ChunkSize;
         size_t m_CurrentChunk;
         CURL* m_CurlController;
         CURLcode m_ResponseCode;

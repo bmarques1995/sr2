@@ -5,6 +5,7 @@
             "request": "launch",
             "name": "Linux Debug",
             "program": "${workspaceFolder}/Linux/Debug/bin/sr2",
+            "cwd": "${workspaceFolder}/Linux/Debug/bin",
             "args": ["--test1"],
         }
     ],

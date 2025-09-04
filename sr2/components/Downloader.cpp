@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <cstring>
 #include <iostream>
+#include "CURLStarter.hpp"
 
 struct DownloaderInfo{
     size_t* CurrentChunk;
@@ -17,8 +18,7 @@ const std::unordered_map<std::string, std::string> sr2::Downloader::s_MimeExtens
     {"image/jpeg", "jpg"},
 };
         
-size_t sr2::Downloader::s_ChunkSize = 1024;
-std::string sr2::Downloader::s_CertificateLocation = "";
+
 
 sr2::Downloader::Downloader()
 {
@@ -32,26 +32,6 @@ sr2::Downloader::~Downloader()
     curl_easy_cleanup(m_CurlController);
 }
 
-void sr2::Downloader::InitCurl()
-{
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-}
-
-void sr2::Downloader::ShutdownCurl()
-{
-    curl_global_cleanup();
-}
-
-void sr2::Downloader::SetCurlChunkSize(size_t size)
-{
-    s_ChunkSize = size;
-}
-
-void sr2::Downloader::SetCertificateLocation(std::string location)
-{
-    s_CertificateLocation = location;
-}
-
 bool sr2::Downloader::DownloadFile(std::string_view url)
 {
         DownloaderInfo info;
@@ -62,7 +42,7 @@ bool sr2::Downloader::DownloadFile(std::string_view url)
         curl_easy_setopt(m_CurlController, CURLOPT_URL, url.data());
 
         // Debian CA certificates (system bundle)
-        curl_easy_setopt(m_CurlController, CURLOPT_CAINFO, s_CertificateLocation.c_str());
+        curl_easy_setopt(m_CurlController, CURLOPT_CAINFO, CURLStarter::GetCertificateLocation().c_str());
 
         // Set write callback
         curl_easy_setopt(m_CurlController, CURLOPT_WRITEFUNCTION, Downloader::WriteCallback);
