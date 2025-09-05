@@ -5,6 +5,7 @@
 #include "Helper.hpp"
 #include "Version.hpp"
 #include "Samples.hpp"
+#include "AddressLoader.hpp"
 #include <sqlite3.h>
 
 const std::unordered_map<std::string, uint32_t> standalone_cmd_option = {
@@ -19,6 +20,10 @@ const std::unordered_map<std::string, uint32_t> standalone_cmd_option = {
 
 int main(int argc, char** argv)
 {
+    sr2::AddressLoader::LoadHTTPAddresses();
+    sr2::AddressLoader::LoadTORAddresses();
+    sr2::AddressLoader::LoadNOSTRelays();
+    
     for (size_t i = 1; i < argc; ++i) {
         std::string arg = argv[i];
         auto it = standalone_cmd_option.find(arg);
